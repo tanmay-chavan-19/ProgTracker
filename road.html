@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e0e0e0;
+        }
+        .road {
+            width: 80%;
+            height: 100px;
+            background-color: #333;
+            position: relative;
+            border-radius: 50px;
+        }
+        .road:before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: #fff;
+            transform: translateY(-50%);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        .car {
+            width: 50px;
+            height: 100px;
+            background-color: #ff5733;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .stop {
+            width: 20px;
+            height: 20px;
+            background-color: #2ecc71;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="road" id="road">
+        <div class="car" id="car">22 y/o boy with specs</div>
+    </div>
+    <script>
+        const car = document.getElementById('car');
+        const road = document.getElementById('road');
+        const stops = 10;  // Number of stops
+
+        for (let i = 1; i <= stops; i++) {
+            const stop = document.createElement('div');
+            stop.classList.add('stop');
+            stop.style.left = `${(i / (stops + 1)) * 100}%`;
+            road.appendChild(stop);
+        }
+
+        let position = 0;
+        function moveCar() {
+            position++;
+            if (position > stops) position = 0;
+            car.style.left = `${(position / (stops + 1)) * 100}%`;
+        }
+
+        setInterval(moveCar, 1000);  // Move the car every second
+    </script>
+</body>
+</html>
